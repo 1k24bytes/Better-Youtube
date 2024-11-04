@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&display=swap");
+
+      body {
+        width: 350px;
+        padding: 0;
+        margin: 0;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        font-family: "Red Hat Display", Arial, sans-serif;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-tabs {
+        display: flex;
+        background-color: #2a2a2a;
+        padding: 10px;
+        gap: 10px;
+        border-bottom: 2px solid #3d3d3d;
+      }
+
+      .nav-tab {
+        padding: 8px 16px;
+        border: none;
+        background: none;
+        color: #888;
+        cursor: pointer;
+        font-family: "Red Hat Display", Arial, sans-serif;
+        font-weight: 500;
+        transition: all 0.2s;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .nav-tab.active {
+        background-color: #3d3d3d;
+        color: #b5a8ff;
+      }
+
+      .nav-tab:hover:not(.active) {
+        background-color: #333;
+        color: #fff;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Speed Control Styles */
+      .speed-control {
+        background-color: #2a2a2a;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .speed-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .speed-btn {
+        background: none;
+        border: none;
+        color: #b5a8ff;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 5px;
+        transition: color 0.2s;
+      }
+
+      .speed-btn:hover {
+        color: #9785ff;
+      }
+
+      .speed-value {
+        font-size: 24px;
+        font-weight: 500;
+        color: #b5a8ff;
+        min-width: 80px;
+        text-align: center;
+      }
+
+      .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: #3d3d3d;
+        outline: none;
+        margin: 10px 0;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #b5a8ff;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .preset-buttons {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .preset-btn {
+        flex: 1;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: #3d3d3d;
+        color: #ffffff;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Red Hat Display", Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .preset-btn:hover {
+        background-color: #4a4a4a;
+        transform: translateY(-1px);
+      }
+
+      /* Theme Control Styles */
+      .theme-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .theme-option {
+        background-color: #2a2a2a;
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 2px solid transparent;
+      }
+
+      .theme-option:hover {
+        transform: translateY(-2px);
+      }
+
+      .theme-option.active {
+        border-color: #b5a8ff;
+      }
+
+      .theme-preview {
+        height: 60px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+
+      .theme-name {
+        text-align: center;
+        font-weight: 500;
+        color: #fff;
+      }
+
+      .dark-theme .theme-preview {
+        background: linear-gradient(to right, #1a1a1a 0%, #2a2a2a 100%);
+      }
+
+      .midnight-theme .theme-preview {
+        background: linear-gradient(to right, #000033 0%, #000066 100%);
+      }
+
+      .forest-theme .theme-preview {
+        background: linear-gradient(to right, #1a472a 0%, #2d5a3f 100%);
+      }
+
+      .ocean-theme .theme-preview {
+        background: linear-gradient(to right, #1a3c5a 0%, #2d5f8a 100%);
+      }
+
+      /* Features Tab Styles */
+      .tab-cont {
+        background-color: #2a2a2a;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .tab-clm {
+        background-color: #2f2f2f;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        min-height: 40px;
+      }
+
+      .right {
+        flex: 0 0 70%;
+        display: flex;
+        align-items: center;
+      }
+
+      .left {
+        flex: 0 0 30%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .right p {
+        margin: 0;
+        color: #b5a8ff;
+      }
+
+      /* Switch styles */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .switch .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #3d3d3d;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+
+      .switch .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #b5a8ff;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #b5a8ff;
+      }
+
+      .mini {
+        height: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="speed">
+          <i class="fas fa-tachometer-alt"></i> Speed
+        </button>
+        <button class="nav-tab" data-tab="themes">
+          <i class="fas fa-paint-brush"></i> Themes
+        </button>
+        <button class="nav-tab" data-tab="features">
+          <i class="fa-solid fa-puzzle-piece"></i> Features
+        </button>
+      </div>
+
+      <div class="content">
+        <!-- Speed Control Tab -->
+        <div class="tab-content active" id="speed-tab">
+          <div class="speed-control">
+            <div class="speed-display">
+              <button class="speed-btn" id="decreaseBtn">
+                <i class="fas fa-minus-circle"></i>
+              </button>
+              <div class="speed-value">1.0x</div>
+              <button class="speed-btn" id="increaseBtn">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </div>
+            <input
+              type="range"
+              min="0.25"
+              max="3"
+              step="0.25"
+              value="1"
+              class="slider"
+              id="speedSlider"
+            />
+            <div class="preset-buttons">
+              <button class="preset-btn" data-speed="1">
+                <i class="fas fa-play"></i> 1x
+              </button>
+              <button class="preset-btn" data-speed="1.5">
+                <i class="fas fa-forward"></i> 1.5x
+              </button>
+              <button class="preset-btn" data-speed="2">
+                <i class="fas fa-fast-forward"></i> 2x
+              </button>
+              <button class="preset-btn" data-speed="3">
+                <i class="fas fa-bolt"></i> 3x
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Themes Tab -->
+        <div class="tab-content" id="themes-tab">
+          <div class="theme-grid">
+            <div class="theme-option dark-theme active" data-theme="default">
+              <div class="theme-preview"></div>
+              <div class="theme-name">Default</div>
+            </div>
+            <div class="theme-option dark-theme active" data-theme="dark">
+              <div class="theme-preview"></div>
+              <div class="theme-name">Dark</div>
+            </div>
+            <div class="theme-option midnight-theme" data-theme="midnight">
+              <div class="theme-preview"></div>
+              <div class="theme-name">Midnight</div>
+            </div>
+            <div class="theme-option forest-theme" data-theme="forest">
+              <div class="theme-preview"></div>
+              <div class="theme-name">Forest</div>
+            </div>
+            <div class="theme-option ocean-theme" data-theme="ocean">
+              <div class="theme-preview"></div>
+              <div class="theme-name">Ocean</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features Tab -->
+        <div class="tab-content" id="features-tab">
+          <div class="tab-cont">
+            <div class="tab-clm">
+              <div class="right">
+                <p>Block YouTube Shorts:</p>
+              </div>
+              <div class="left">
+                <label class="switch">
+                  <input type="checkbox" id="toggleShortsBtn" />
+                  <span class="slider mini"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="tab-clm" style="display: flex; flex-direction: column;">
+              <div class="t1" style="    display: flex;
+    height: 40px;">
+                <div class="right">
+                
+                  <p>Reading Mode:</p>
+                  
+                </div>
+                <div class="left">
+                  <label class="switch">
+                    <input type="checkbox" id="readingMode" />
+                    <span class="slider mini"></span>
+                  </label>
+                </div>
+              </div>
+                <div style="width: 100%">
+                  <input
+                    type="range"
+                    id="intensity"
+                    min="0"
+                    max="100"
+                    value="50"
+                    class="slider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>

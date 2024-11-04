@@ -1,0 +1,169 @@
+/* content.css */
+/* Dark Theme (Default) */
+.theme-default {
+  --like-button: #b5a8ff;
+}
+.theme-dark {
+  --yt-spec-text-primary: #b5a8ff;
+  --accent-secondary: #9785ff;
+  --button-hover: #7d6af9;
+  --like-button: #b5a8ff;
+  --subscribe-button: #b5a8ff;
+}
+
+/* Midnight Theme */
+.theme-midnight {
+  --yt-spec-text-primary: #00ffff;
+  --accent-secondary: #00cccc;
+  --button-hover: #00a3a3;
+  --like-button: #00ffff;
+  --subscribe-button: #00e5e5;
+}
+
+/* Forest Theme */
+.theme-forest {
+  --accent-secondary: #22c55e;
+  --button-hover: #16a34a;
+  --like-button: #4ade80;
+  --subscribe-button: #22c55e;
+  --yt-spec-text-primary: #4ade80;
+}
+
+/* Ocean Theme */
+.theme-ocean {
+  --yt-spec-text-primary: #38bdf8;
+  --accent-secondary: #0ea5e9;
+  --button-hover: #0284c7;
+  --like-button: #38bdf8;
+  --subscribe-button: #0ea5e9;
+}
+
+/* Apply theme variables to specific YouTube elements */
+/* Subscribe Button */
+ytd-subscribe-button-renderer button,
+.ytd-subscribe-button-renderer button {
+  background-color: var(--subscribe-button) !important;
+}
+
+/* Like/Dislike Buttons */
+ytd-menu-renderer.ytd-video-primary-info-renderer .style-default-active,
+like-button-view-model
+  button[aria-pressed="true"]
+  .yt-spec-button-shape-next--filled {
+  color: var(--like-button) !important;
+}
+
+/* Progress Bar */
+.ytp-progress-bar-container:hover .ytp-progress-bar,
+.ytp-progress-bar {
+  background-color: var(--accent-secondary) !important;
+}
+
+.ytp-progress-bar .ytp-progress-bar-padding {
+  background-color: var(--yt-spec-text-primary) !important;
+}
+
+/* Video Player Controls */
+.ytp-chrome-controls .ytp-button:hover,
+.ytp-chrome-controls .ytp-button[aria-pressed="true"] {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Timestamps and Duration */
+.ytp-time-current,
+.ytp-time-duration {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Links and Channel Names */
+ytd-video-owner-renderer a.yt-formatted-string,
+ytd-comment-renderer a.yt-formatted-string,
+.ytd-comment-renderer a.yt-formatted-string {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+ytd-video-owner-renderer a.yt-formatted-string:hover,
+ytd-comment-renderer a.yt-formatted-string:hover,
+.ytd-comment-renderer a.yt-formatted-string:hover {
+  color: var(--accent-secondary) !important;
+}
+
+/* Video Title */
+ytd-watch-metadata a.yt-formatted-string:hover {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Playlist Active Video */
+ytd-playlist-panel-video-renderer[selected] #video-title {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Settings Menu */
+.ytp-settings-menu .ytp-menuitem[aria-checked="true"] .ytp-menuitem-label,
+.ytp-settings-menu
+  .ytp-menuitem:hover:not([aria-disabled="true"])
+  .ytp-menuitem-label {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Video Recommendations Hover */
+ytd-compact-video-renderer:hover,
+ytd-video-renderer:hover {
+  background-color: rgba(var(--yt-spec-text-primary-rgb), 0.1) !important;
+}
+
+/* Chips/Tags */
+ytd-chip-cloud-chip-renderer[selected] {
+  background-color: var(--yt-spec-text-primary) !important;
+}
+
+/* Volume Slider */
+.ytp-volume-slider-handle,
+.ytp-volume-slider-handle:before {
+  background-color: var(--yt-spec-text-primary) !important;
+}
+
+/* Chapter Markers */
+.ytp-chapter-hover-container:hover .ytp-chapter-title {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Buttons and Interactive Elements */
+.yt-spec-button-shape-next--filled {
+  background-color: var(--yt-spec-text-primary) !important;
+}
+
+.yt-spec-button-shape-next--filled:hover {
+  background-color: var(--button-hover) !important;
+}
+
+/* Video Quality Menu */
+.ytp-quality-menu .ytp-menuitem[aria-checked="true"] .ytp-menuitem-label {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Playlist Controls */
+.ytp-playlist-menu-button:hover,
+.ytp-playlist-menu-button[aria-expanded="true"] {
+  color: var(--yt-spec-text-primary) !important;
+}
+
+/* Timestamps in Comments */
+ytd-comment-renderer .published-time-text a {
+  color: var(--accent-secondary) !important;
+}
+
+/* Comment Like Buttons */
+ytd-comment-action-buttons-renderer #like-button.style-default-active {
+  color: var(--like-button) !important;
+}
+
+/* Search Box Focus */
+ytd-searchbox[has-focus] #container {
+  border-color: var(--yt-spec-text-primary) !important;
+}
+
+/* End Screen Elements */
+.ytp-ce-element:hover .ytp-ce-video-title {
+  color: var(--yt-spec-text-primary) !important;
+}
